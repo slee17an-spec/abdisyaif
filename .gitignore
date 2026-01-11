@@ -1,0 +1,23 @@
+# Environment & secrets
+.env
+API.DO.txt
+
+# Logs & runtime files
+logs/
+*.log
+
+# Dependencies
+node_modules/
+
+# Cache & build artifacts
+cache/
+dist/
+build/
+
+# Archives
+*.zip
+*.tar.gz
+
+# OS / Editor
+.DS_Store
+Thumbs.db
