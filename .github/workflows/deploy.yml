@@ -22,7 +22,7 @@ jobs:
             cd /var/www/api
             git pull origin main
             npm install --omit=dev
-            pm2 reload ecosystem.config.cjs --env production
+            pm2 reload ecosystem.config.wrong --env production
 
     - name: Send email on failure
       if: failure()
