@@ -23,3 +23,25 @@ jobs:
             git pull origin main
             npm install --omit=dev
             pm2 reload ecosystem.config.cjs --env production
+
+    - name: Send email on failure
+      if: failure()
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: ${{ secrets.SMTP_HOST }}
+        server_port: ${{ secrets.SMTP_PORT }}
+        username: ${{ secrets.SMTP_USER }}
+        password: ${{ secrets.SMTP_PASS }}
+        subject: "❌ DEPLOY FAILED — AbdiSyAIF API"
+        to: ${{ secrets.ALERT_EMAIL_TO }}
+        from: "AbdiSyAIF CI <${{ secrets.SMTP_USER }}>"
+        body: |
+          🚨 Deploy FAILED
+
+          Repo   : ${{ github.repository }}
+          Branch : ${{ github.ref_name }}
+          Commit : ${{ github.sha }}
+          Actor  : ${{ github.actor }}
+
+          🔗 Logs:
+          ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
