@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Deploy via SSH
+B      - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -22,7 +22,7 @@ jobs:
             cd /var/www/api
             git pull origin main
             npm install --omit=dev
-            pm2 reload ecosystem.config.wrong --env production
+            pm2 reload ecosystem.config.cjs --env production
 
     - name: Send email on failure
       if: failure()
